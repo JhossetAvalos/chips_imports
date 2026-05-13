@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chips Imports — Smartwatches & Accesorios</title>
+<meta name="description" content="Chips Imports: tienda de smartwatches y accesorios tech en Perú. Envíos a todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & ROOT ── */
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:62.5%;height:100%}
+body{
+  margin:0;min-height:100%;
+  display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:100%;
+  font-family:'Jost',sans-serif;
+  font-size:1.5rem;letter-spacing:.06rem;
+  line-height:1.8;color:rgb(62,62,62);
+  background:#fdfdfd;
+}
+@media(min-width:750px){body{font-size:1.6rem}}
+a{color:inherit;text-decoration:none}
+button{font-family:'Jost',sans-serif;cursor:pointer;border:none;background:none}
+ul{list-style:none;margin:0;padding:0}
+img{display:block;max-width:100%}
+*{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+
+/* ── VARIABLES ── */
+:root{
+  /* Kitsu exact values, accent changed from pink to blue for tech */
+  --bg:         253,253,253;
+  --fg:         62,62,62;
+  --accent:     0,120,200;       /* was 255,93,142 en kitsu */
+  --accent-hex: #0078c8;
+  --btn-text:   244,244,244;
+  --card-bg:    255,255,255;
+  --shadow:     0,17,40;
+  --border-op:  .08;
+  --card-r:     1.6rem;
+  --card-img-pad: 1.2rem;
+  --btn-r:      12px;
+  --badge-r:    4rem;
+  --page-w:     1200px;
+  --grid-gap-d: 12px;
+  --grid-gap-m: 6px;
+  --wsp:        #25D366;
+  --wsp2:       #1EAA52;
+}
+
+/* ── PAGE WIDTH ── */
+.page-width{max-width:var(--page-w);margin:0 auto;padding:0 1.5rem}
+
+/* ═══════════════════════════════
+   HEADER
+═══════════════════════════════ */
+.header-wrap{
+  position:sticky;top:0;z-index:200;
+  background:#fdfdfd;
+  border-bottom:1px solid rgba(var(--shadow),.08);
+  box-shadow:0 1px 0 rgba(var(--shadow),.04);
+}
+.header{
+  display:grid;
+  grid-template-areas:"left center right";
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  height:5.6rem;
+  gap:1rem;
+}
+@media(max-width:749px){
+  .header{grid-template-areas:"left center right";grid-template-columns:auto 1fr auto}
+}
+
+/* hamburger (mobile) */
+.header__icon{
+  display:flex;align-items:center;justify-content:center;
+  width:4.4rem;height:4.4rem;border-radius:50%;
+  transition:background .15s;color:rgb(var(--fg));
+}
+.header__icon:hover{background:rgba(var(--shadow),.05)}
+.hamburger-area{grid-area:left;display:flex;align-items:center;gap:.8rem}
+@media(min-width:750px){.hamburger-btn{display:none}}
+
+/* logo */
+.logo-area{grid-area:center}
+.logo-link{
+  display:flex;align-items:center;gap:.8rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:1.8rem;font-weight:600;
+  color:rgb(var(--fg));
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.logo-chip{
+  width:3.2rem;height:3.2rem;border-radius:.8rem;
+  background:var(--accent-hex);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.logo-chip svg{width:1.8rem;height:1.8rem}
+.logo-span{color:var(--accent-hex)}
+
+/* right icons */
+.header__icons{grid-area:right;display:flex;align-items:center;justify-content:flex-end;gap:.4rem}
+.wsp-header-btn{
+  display:flex;align-items:center;gap:.6rem;
+  background:var(--wsp);color:#fff;
+  font-size:1.3rem;font-weight:600;
+  padding:.7rem 1.4rem;border-radius:var(--btn-r);
+  transition:background .15s,transform .15s;
+  white-space:nowrap;
+}
+.wsp-header-btn:hover{background:var(--wsp2);transform:translateY(-1px)}
+.wsp-header-btn svg{width:1.6rem;height:1.6rem;flex-shrink:0}
+@media(max-width:600px){.wsp-header-btn span{display:none}}
+
+/* ── NAV (horizontal scroll) ── */
+.nav-wrap{
+  border-bottom:1px solid rgba(var(--shadow),.06);
+  background:#fdfdfd;
+  overflow:hidden;
+}
+.nav-inner{
+  display:flex;align-items:center;gap:0;
+  overflow-x:auto;padding:.4rem 1.5rem;
+  scrollbar-width:none;
+  max-width:var(--page-w);margin:0 auto;
+}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{
+  font-size:1.3rem;font-weight:500;color:rgb(var(--fg));opacity:.7;
+  padding:.6rem 1.2rem;border-radius:2rem;white-space:nowrap;
+  transition:opacity .15s,background .15s;
+  letter-spacing:.04em;
+}
+.nav-link:hover,.nav-link.active{opacity:1;background:rgba(var(--shadow),.05)}
+.nav-link.active{font-weight:700;color:var(--accent-hex)}
+
+/* ═══════════════════════════════
+   HERO BANNER
+═══════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#e8f4ff 0%,#f0f8ff 50%,#e0f0ff 100%);
+  min-height:36rem;
+  display:flex;align-items:center;
+}
+.hero__media{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:flex-end;
+  overflow:hidden;
+}
+.hero__bg-pattern{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle at 70% 50%, rgba(0,120,200,.08) 0%, transparent 60%),
+                   url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230078c8' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero__devices{
+  position:absolute;right:8%;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;gap:2rem;
+  opacity:.9;
+}
+.hero__watch{
+  font-size:10rem;line-height:1;
+  filter:drop-shadow(0 8px 32px rgba(0,120,200,.2));
+  animation:float 4s ease-in-out infinite;
+}
+.hero__device-sm{font-size:5rem;animation:float 4s ease-in-out infinite .8s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.hero__content{
+  position:relative;z-index:1;
+  max-width:var(--page-w);margin:0 auto;
+  padding:5rem 1.5rem;width:100%;
+  max-width:52rem;
+}
+.hero__eyebrow{
+  display:inline-block;
+  font-size:1.2rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent-hex);
+  background:rgba(0,120,200,.1);
+  padding:.4rem 1.2rem;border-radius:2rem;
+  margin-bottom:1.6rem;
+}
+.hero__title{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(2.8rem,5vw,4.4rem);
+  font-weight:600;line-height:1.15;
+  color:rgb(var(--fg));
+  margin-bottom:1.2rem;letter-spacing:-.02em;
+}
+.hero__sub{
+  font-size:1.5rem;color:rgba(62,62,62,.65);
+  margin-bottom:2.4rem;max-width:38rem;
+  line-height:1.7;
+}
+.hero__btn{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:var(--wsp);color:#fff;
+  font-size:1.4rem;font-weight:600;
+  padding:1.3rem 2.8rem;border-radius:var(--btn-r);
+  transition:all .2s;
+  box-shadow:0 4px 16px rgba(37,211,102,.25);
+}
+.hero__btn:hover{background:var(--wsp2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.35)}
+.hero__btn svg{width:2rem;height:2rem}
+
+/* ═══════════════════════════════
+   ANNOUNCEMENT / TAGLINE BAND
+═══════════════════════════════ */
+.tagline-band{
+  background:rgb(var(--accent));
+  padding:.8rem 1.5rem;text-align:center;
+}
+.tagline-band p{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.4rem;font-weight:500;
+  color:#fff;margin:0;letter-spacing:.03em;
+}
+.tagline-band strong{font-weight:600}
+
+/* ═══════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════ */
+.section{padding:3.6rem 0 4.8rem}
+.section--alt{background:rgba(var(--shadow),.02)}
+
+.section-title-row{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:2.4rem;gap:1rem;
+}
+.section-title{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(2rem,3vw,2.6rem);
+  font-weight:500;color:rgb(var(--fg));
+  letter-spacing:-.01em;line-height:1.2;
+}
+.section-title strong{font-weight:600;color:rgb(var(--fg))}
+.see-all-link{
+  font-size:1.3rem;font-weight:500;
+  color:var(--accent-hex);
+  border:1px solid rgba(var(--accent),.35);
+  padding:.6rem 1.4rem;border-radius:2rem;
+  transition:all .15s;white-space:nowrap;
+}
+.see-all-link:hover{background:rgba(var(--accent),.06)}
+
+/* ── FILTER PILLS ── */
+.filter-pills{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.4rem}
+.filter-pill{
+  font-family:'Jost',sans-serif;
+  font-size:1.3rem;font-weight:500;
+  color:rgb(var(--fg));opacity:.65;
+  padding:.6rem 1.6rem;border-radius:2rem;
+  border:1px solid rgba(var(--shadow),.12);
+  background:#fdfdfd;cursor:pointer;
+  transition:all .15s;letter-spacing:.03em;
+}
+.filter-pill:hover{opacity:1;border-color:rgba(var(--accent),.4)}
+.filter-pill.active{
+  background:rgb(var(--accent));border-color:rgb(var(--accent));
+  color:#fff;opacity:1;font-weight:600;
+}
+
+/* ═══════════════════════════════
+   PRODUCT GRID — kitsu.pe style
+═══════════════════════════════ */
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:var(--grid-gap-d);
+}
+@media(max-width:1100px){.product-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:749px){.product-grid{grid-template-columns:repeat(2,1fr);gap:var(--grid-gap-m)}}
+
+.card-wrapper{animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* THE CARD — faithful to kitsu */
+.card{
+  background:rgb(var(--card-bg));
+  border-radius:var(--card-r);
+  overflow:hidden;
+  border:1px solid rgba(var(--shadow),var(--border-op));
+  transition:box-shadow .25s,transform .25s;
+  position:relative;
+  height:100%;display:flex;flex-direction:column;
+}
+.card:hover{
+  box-shadow:0 8px 28px rgba(var(--shadow),.12);
+  transform:translateY(-2px);
+}
+
+/* image area with padding — kitsu signature */
+.card__inner{
+  position:relative;
+  background:rgb(var(--card-bg));
+  padding:var(--card-img-pad);
+  aspect-ratio:4/5;
+  overflow:hidden;
+}
+.card__media{
+  width:100%;height:100%;
+  border-radius:calc(var(--card-r) - .4rem);
+  overflow:hidden;
+  background:#f5f5f5;
+  display:flex;align-items:center;justify-content:center;
+}
+.card__media img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease;
+}
+.card:hover .card__media img{transform:scale(1.06)}
+.card__emoji{
+  font-size:5.5rem;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.1));
+  transition:transform .3s;
+}
+.card:hover .card__emoji{transform:scale(1.08)}
+
+/* badge — pill at bottom left, kitsu style */
+.card__badge{
+  position:absolute;bottom:calc(var(--card-img-pad) + .8rem);left:calc(var(--card-img-pad) + .8rem);
+}
+.badge{
+  display:inline-block;
+  font-size:1.1rem;font-weight:600;letter-spacing:.04em;
+  padding:.3rem .9rem;border-radius:var(--badge-r);
+  border:1px solid rgb(var(--fg));
+  color:rgb(var(--fg));background:rgb(var(--card-bg));
+}
+.badge--sale{border-color:rgb(var(--accent));color:var(--accent-hex);background:rgba(var(--accent),.07)}
+.badge--new{border-color:#7C3AED;color:#7C3AED;background:rgba(124,58,237,.07)}
+.badge--hot{border-color:#DC2626;color:#DC2626;background:rgba(220,38,38,.07)}
+
+/* content area */
+.card__content{padding:.8rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column}
+.card__heading{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.35rem;font-weight:500;
+  color:rgb(var(--fg));margin:0 0 .6rem;line-height:1.35;
+  letter-spacing:-.005em;
+}
+.card__info{margin-bottom:1rem;flex:1}
+
+/* price — kitsu style */
+.price{font-size:1.35rem}
+.price--on-sale .price__regular{display:none}
+.price__sale{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.price-item--regular{font-size:1.2rem;color:rgba(62,62,62,.4);text-decoration:line-through}
+.price-item--sale{font-weight:700;color:rgb(var(--fg))}
+.price-item--normal{font-weight:700;color:rgb(var(--fg))}
+
+/* WhatsApp btn replacing "Agregar al carrito" */
+.quick-add{margin-top:auto}
+.btn-wsp{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:100%;
+  background:var(--wsp);color:#fff;
+  font-family:'Jost',sans-serif;
+  font-size:1.3rem;font-weight:600;letter-spacing:.03em;
+  padding:1rem 1.2rem;
+  border-radius:var(--btn-r);
+  transition:background .15s,transform .15s,box-shadow .15s;
+}
+.btn-wsp:hover{background:var(--wsp2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,211,102,.3)}
+.btn-wsp svg{width:1.6rem;height:1.6rem;flex-shrink:0}
+
+/* ═══════════════════════════════
+   COLLECTION / CATEGORY CARDS
+═══════════════════════════════ */
+.collection-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:var(--grid-gap-d);
+}
+@media(max-width:749px){.collection-grid{grid-template-columns:repeat(2,1fr);gap:var(--grid-gap-m)}}
+
+.collection-card{
+  position:relative;overflow:hidden;
+  border-radius:var(--card-r);
+  aspect-ratio:1/1;
+  cursor:pointer;
+  border:1px solid rgba(var(--shadow),.08);
+}
+.collection-card:hover .col-card__img{transform:scale(1.06)}
+.col-card__img{
+  width:100%;height:100%;
+  transition:transform .4s ease;
+  background:linear-gradient(135deg,#e8f4ff,#dbeeff);
+  display:flex;align-items:center;justify-content:center;
+  font-size:5rem;
+}
+.col-card__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 60%);
+  display:flex;align-items:flex-end;
+  padding:1.4rem;
+}
+.col-card__title{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.5rem;font-weight:600;
+  color:#fff;line-height:1.2;
+}
+
+/* ═══════════════════════════════
+   WHY US — simple 4-col
+═══════════════════════════════ */
+.perks-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;
+  margin-top:0;
+}
+@media(max-width:749px){.perks-grid{grid-template-columns:repeat(2,1fr)}}
+.perk{
+  text-align:center;padding:2rem 1.2rem;
+  border:1px solid rgba(var(--shadow),.08);
+  border-radius:var(--card-r);
+  background:#fff;
+}
+.perk__icon{font-size:2.6rem;margin-bottom:.8rem}
+.perk__title{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.4rem;font-weight:600;color:rgb(var(--fg));
+  margin-bottom:.4rem;
+}
+.perk__desc{font-size:1.2rem;color:rgba(62,62,62,.6);line-height:1.5}
+
+/* ═══════════════════════════════
+   CTA BANNER
+═══════════════════════════════ */
+.cta-band{
+  background:rgb(var(--accent));
+  padding:4rem 1.5rem;text-align:center;
+}
+.cta-band h2{
+  font-family:'DM Sans',sans-serif;
+  font-size:2.4rem;font-weight:600;
+  color:#fff;margin-bottom:1rem;letter-spacing:-.01em;
+}
+.cta-band p{font-size:1.5rem;color:rgba(255,255,255,.8);margin-bottom:2rem}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:#fff;color:var(--accent-hex);
+  font-family:'DM Sans',sans-serif;
+  font-size:1.5rem;font-weight:600;
+  padding:1.3rem 2.8rem;border-radius:var(--btn-r);
+  transition:all .2s;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.btn-cta svg{width:2rem;height:2rem}
+
+/* ═══════════════════════════════
+   MOBILE DRAWER
+═══════════════════════════════ */
+.drawer-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.5);
+  opacity:0;transition:opacity .25s;
+}
+.drawer{
+  position:fixed;top:0;left:0;bottom:0;z-index:600;
+  width:28rem;max-width:90vw;
+  background:#fdfdfd;
+  transform:translateX(-100%);transition:transform .3s ease;
+  overflow-y:auto;
+  box-shadow:8px 0 32px rgba(0,0,0,.12);
+}
+.drawer.open{transform:translateX(0)}
+.drawer-overlay.open{display:block;opacity:1}
+.drawer-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.6rem 1.6rem;
+  border-bottom:1px solid rgba(var(--shadow),.08);
+}
+.drawer-logo{font-family:'DM Sans',sans-serif;font-size:1.6rem;font-weight:600;color:var(--accent-hex)}
+.drawer-close{
+  width:3.6rem;height:3.6rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgb(var(--fg));font-size:1.8rem;cursor:pointer;
+  transition:background .15s;
+}
+.drawer-close:hover{background:rgba(var(--shadow),.07)}
+.drawer-nav{padding:1rem 0}
+.drawer-nav a{
+  display:block;padding:1.1rem 2rem;
+  font-size:1.5rem;font-weight:500;color:rgb(var(--fg));
+  border-bottom:1px solid rgba(var(--shadow),.05);
+  transition:background .12s;
+}
+.drawer-nav a:hover{background:rgba(var(--shadow),.04);color:var(--accent-hex)}
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer{
+  background:rgb(var(--bg));
+  border-top:1px solid rgba(var(--shadow),.08);
+  padding:4rem 0 2rem;
+}
+.footer-inner{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;
+  margin-bottom:3rem;
+}
+@media(max-width:749px){.footer-inner{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand{}
+.footer-logo{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.7rem;font-weight:600;color:rgb(var(--fg));
+  margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;
+}
+.footer-logo-chip{
+  width:2.8rem;height:2.8rem;border-radius:.6rem;
+  background:var(--accent-hex);
+  display:flex;align-items:center;justify-content:center;
+}
+.footer-logo-chip svg{width:1.4rem;height:1.4rem}
+.footer-desc{font-size:1.3rem;color:rgba(62,62,62,.6);line-height:1.6;margin-bottom:1.4rem;max-width:24rem}
+.social-links{display:flex;gap:.8rem}
+.social-btn{
+  width:3.4rem;height:3.4rem;border-radius:.8rem;
+  border:1px solid rgba(var(--shadow),.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;transition:all .15s;
+}
+.social-btn:hover{border-color:var(--accent-hex);background:rgba(var(--accent),.06)}
+.footer-col h4{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.2rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(62,62,62,.5);margin-bottom:1.2rem;
+}
+.footer-col ul li{margin-bottom:.8rem}
+.footer-col ul li a{font-size:1.3rem;color:rgba(62,62,62,.75);transition:color .12s}
+.footer-col ul li a:hover{color:var(--accent-hex)}
+.footer-bottom{
+  border-top:1px solid rgba(var(--shadow),.07);
+  padding-top:1.6rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
+}
+.footer-bottom small{font-size:1.2rem;color:rgba(62,62,62,.45)}
+.footer-bottom .policies{display:flex;gap:1.6rem;flex-wrap:wrap}
+.footer-bottom .policies a{font-size:1.2rem;color:rgba(62,62,62,.45);transition:color .12s}
+.footer-bottom .policies a:hover{color:var(--accent-hex)}
+
+/* ── FLOAT WSP ── */
+.float-wsp{
+  position:fixed;bottom:2.4rem;right:2.4rem;z-index:300;
+  width:5.6rem;height:5.6rem;border-radius:50%;
+  background:var(--wsp);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:all .2s;
+}
+.float-wsp:hover{background:var(--wsp2);transform:scale(1.1);box-shadow:0 6px 26px rgba(37,211,102,.5)}
+.float-wsp svg{width:2.8rem;height:2.8rem}
+
+/* ── SEARCH BAR ── */
+.search-wrap{
+  padding:.8rem 1.5rem;
+  background:#f7f7f7;border-bottom:1px solid rgba(var(--shadow),.06);
+}
+.search-inner{
+  max-width:var(--page-w);margin:0 auto;
+  position:relative;
+}
+.search-input{
+  width:100%;font-family:'Jost',sans-serif;font-size:1.4rem;
+  border:1px solid rgba(var(--shadow),.14);
+  border-radius:.6rem;padding:.9rem 1.2rem .9rem 4rem;
+  background:#fff;color:rgb(var(--fg));
+  outline:none;transition:border-color .15s;
+  letter-spacing:.03em;
+}
+.search-input:focus{border-color:rgba(var(--accent),.5)}
+.search-icon{
+  position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);
+  color:rgba(62,62,62,.4);pointer-events:none;
+}
+.search-icon svg{width:1.6rem;height:1.6rem}
+</style>
+</head>
+<body>
+
+<!-- ══ MOBILE DRAWER ══ -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <span class="drawer-logo">Chips<span style="color:var(--accent-hex)">Imports</span></span>
+    <div class="drawer-close" onclick="closeDrawer()">✕</div>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#" onclick="filterCat('all');closeDrawer()">Ver Todo</a>
+    <a href="#" onclick="filterCat('smartwatch');closeDrawer()">Smartwatches</a>
+    <a href="#" onclick="filterCat('auricular');closeDrawer()">Auriculares</a>
+    <a href="#" onclick="filterCat('accesorio');closeDrawer()">Accesorios</a>
+    <a href="#" onclick="filterCat('oferta');closeDrawer()">Ofertas</a>
+    <a href="#nosotros" onclick="closeDrawer()">Nosotros</a>
+    <a href="https://wa.me/51999999999" target="_blank" style="color:var(--wsp);font-weight:700">💬 WhatsApp</a>
+  </nav>
+</div>
+
+<!-- ══ HEADER ══ -->
+<div class="header-wrap">
+  <div class="page-width">
+    <div class="header">
+      <div class="hamburger-area">
+        <button class="header__icon hamburger-btn" onclick="openDrawer()" aria-label="Menú">
+          <svg fill="none" viewBox="0 0 18 16" width="18" height="16"><path fill="currentColor" d="M1 .5a.5.5 0 1 0 0 1h15.71a.5.5 0 0 0 0-1zM.5 8a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8m0 7a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5"/></svg>
+        </button>
+      </div>
+      <div class="logo-area" style="text-align:center">
+        <a href="#" class="logo-link">
+          <div class="logo-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="3"/>
+              <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+              <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+              <line x1="1" y1="9" x2="4" y2="9"/><line x1="20" y1="9" x2="23" y2="9"/>
+              <line x1="1" y1="15" x2="4" y2="15"/><line x1="20" y1="15" x2="23" y2="15"/>
+            </svg>
+          </div>
+          Chips<span class="logo-span">Imports</span>
+        </a>
+      </div>
+      <div class="header__icons">
+        <a class="wsp-header-btn" href="https://wa.me/51999999999?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%98%8A" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.109 1.523 5.838L.057 23.5l5.815-1.52C7.595 22.96 9.75 23.5 12 23.5 18.627 23.5 24 18.127 24 11.5S18.627 0 12 0zm0 21.5c-1.908 0-3.683-.53-5.194-1.45l-.372-.221-3.452.905.92-3.367-.242-.389C2.562 15.495 2 13.8 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill-rule="evenodd"/></svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Horizontal nav -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <a class="nav-link active" onclick="filterCat('all',this)" href="#">Ver Todo</a>
+      <a class="nav-link" onclick="filterCat('smartwatch',this)" href="#">Smartwatches</a>
+      <a class="nav-link" onclick="filterCat('auricular',this)" href="#">Auriculares</a>
+      <a class="nav-link" onclick="filterCat('accesorio',this)" href="#">Accesorios</a>
+      <a class="nav-link" onclick="filterCat('oferta',this)" href="#">Ofertas 🔥</a>
+      <a class="nav-link" href="#nosotros">Nosotros</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<section class="hero">
+  <div class="hero__bg-pattern"></div>
+  <div class="hero__devices">
+    <div class="hero__watch">⌚</div>
+    <div>
+      <div class="hero__device-sm">🎧</div>
+      <div class="hero__device-sm" style="animation-delay:1.2s">🔋</div>
+    </div>
+  </div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">Envíos a todo el Perú 🇵🇪</div>
+    <h1 class="hero__title">Smartwatches &amp; accesorios tech al mejor precio</h1>
+    <p class="hero__sub">Productos importados, verificados y con asesoría personalizada. Escríbenos y te ayudamos a elegir.</p>
+    <a class="hero__btn" href="https://wa.me/51999999999?text=Hola!%20Quiero%20ver%20el%20cat%C3%A1logo%20completo%20%F0%9F%98%8A" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.109 1.523 5.838L.057 23.5l5.815-1.52C7.595 22.96 9.75 23.5 12 23.5 18.627 23.5 24 18.127 24 11.5S18.627 0 12 0zm0 21.5c-1.908 0-3.683-.53-5.194-1.45l-.372-.221-3.452.905.92-3.367-.242-.389C2.562 15.495 2 13.8 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill-rule="evenodd"/></svg>
+      Consultar por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ══ TAGLINE BAND ══ -->
+<div class="tagline-band">
+  <p><strong>Lo mejor en tech ⌚ 100% verificados</strong>&nbsp;&nbsp;·&nbsp;&nbsp;Envíos a todo el Perú</p>
+</div>
+
+<!-- ══ SEARCH ══ -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <div class="search-icon"><svg fill="none" viewBox="0 0 18 19"><path fill="currentColor" fill-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 1 1 2.85 3.5a5.784 5.784 0 0 1 8.18 8.18m.26 1.12a6.78 6.78 0 1 1 .72-.7l5.4 5.4a.5.5 0 1 1-.71.7z" clip-rule="evenodd"/></svg></div>
+    <input class="search-input" id="search-input" type="text" placeholder="Buscar producto…" oninput="searchProducts(this.value)">
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══ -->
+<main>
+
+  <!-- PRODUCTOS -->
+  <section class="section" id="productos">
+    <div class="page-width">
+      <div class="section-title-row">
+        <h2 class="section-title" id="section-heading"><strong>Novedades</strong></h2>
+        <a class="see-all-link" href="https://wa.me/51999999999?text=Hola!%20Quiero%20ver%20todo%20el%20cat%C3%A1logo%20completo%20%F0%9F%98%8A" target="_blank">Ver catálogo completo</a>
+      </div>
+
+      <div class="filter-pills" id="filter-pills">
+        <button class="filter-pill active" data-cat="all">Ver Todo</button>
+        <button class="filter-pill" data-cat="smartwatch">Smartwatches</button>
+        <button class="filter-pill" data-cat="auricular">Auriculares</button>
+        <button class="filter-pill" data-cat="accesorio">Accesorios</button>
+        <button class="filter-pill" data-cat="oferta">🔥 Ofertas</button>
+      </div>
+
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS DESTACADAS -->
+  <section class="section section--alt">
+    <div class="page-width">
+      <div class="section-title-row">
+        <h2 class="section-title"><strong>Categorías Destacadas</strong></h2>
+      </div>
+      <div class="collection-grid">
+        <div class="collection-card" onclick="filterCat('smartwatch')">
+          <div class="col-card__img">⌚</div>
+          <div class="col-card__overlay"><div class="col-card__title">Smartwatches</div></div>
+        </div>
+        <div class="collection-card" onclick="filterCat('auricular')">
+          <div class="col-card__img">🎧</div>
+          <div class="col-card__overlay"><div class="col-card__title">Auriculares TWS</div></div>
+        </div>
+        <div class="collection-card" onclick="filterCat('accesorio')">
+          <div class="col-card__img">🔋</div>
+          <div class="col-card__overlay"><div class="col-card__title">Accesorios</div></div>
+        </div>
+        <div class="collection-card" onclick="filterCat('oferta')">
+          <div class="col-card__img" style="background:linear-gradient(135deg,#fff5e8,#ffe8d0)">🔥</div>
+          <div class="col-card__overlay"><div class="col-card__title">Ofertas</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>¿No encuentras lo que buscas?</h2>
+    <p>Escríbenos y te asesoramos al instante. También manejamos pedidos especiales.</p>
+    <a class="btn-cta" href="https://wa.me/51999999999?text=Hola!%20Estoy%20buscando%20un%20producto%20que%20no%20encontr%C3%A9%20en%20la%20web.%20%C2%BFPueden%20ayudarme%3F" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--wsp)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.109 1.523 5.838L.057 23.5l5.815-1.52C7.595 22.96 9.75 23.5 12 23.5 18.627 23.5 24 18.127 24 11.5S18.627 0 12 0zm0 21.5c-1.908 0-3.683-.53-5.194-1.45l-.372-.221-3.452.905.92-3.367-.242-.389C2.562 15.495 2 13.8 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill-rule="evenodd"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+
+  <!-- NOSOTROS / PERKS -->
+  <section class="section" id="nosotros">
+    <div class="page-width">
+      <div class="section-title-row">
+        <h2 class="section-title"><strong>¿Por qué elegirnos?</strong></h2>
+      </div>
+      <div class="perks-grid">
+        <div class="perk">
+          <div class="perk__icon">📦</div>
+          <div class="perk__title">Envíos a todo el Perú</div>
+          <div class="perk__desc">Lima y provincias. Olva Courier, Shalom y delivery propio en Lima.</div>
+        </div>
+        <div class="perk">
+          <div class="perk__icon">✅</div>
+          <div class="perk__title">Productos verificados</div>
+          <div class="perk__desc">Revisamos cada producto antes del despacho. Garantía en smartwatches.</div>
+        </div>
+        <div class="perk">
+          <div class="perk__icon">💬</div>
+          <div class="perk__title">Atención por WhatsApp</div>
+          <div class="perk__desc">Te asesoramos al instante. Fotos, videos y resolución de dudas antes de comprar.</div>
+        </div>
+        <div class="perk">
+          <div class="perk__icon">💳</div>
+          <div class="perk__title">Yape · Plin · Transferencia</div>
+          <div class="perk__desc">Múltiples medios de pago y facilidades para pedidos mayores.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="page-width">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <rect x="4" y="4" width="16" height="16" rx="3"/>
+              <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+              <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+              <line x1="1" y1="9" x2="4" y2="9"/><line x1="20" y1="9" x2="23" y2="9"/>
+              <line x1="1" y1="15" x2="4" y2="15"/><line x1="20" y1="15" x2="23" y2="15"/>
+            </svg>
+          </div>
+          ChipsImports
+        </div>
+        <p class="footer-desc">Smartwatches y accesorios tech importados. Atención por WhatsApp. Envíos a todo el Perú 🇵🇪</p>
+        <div class="social-links">
+          <a class="social-btn" href="#" title="Facebook">📘</a>
+          <a class="social-btn" href="#" title="Instagram">📸</a>
+          <a class="social-btn" href="https://wa.me/51999999999" target="_blank" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#" onclick="filterCat('all')">Ver todo</a></li>
+          <li><a href="#" onclick="filterCat('smartwatch')">Smartwatches</a></li>
+          <li><a href="#" onclick="filterCat('auricular')">Auriculares TWS</a></li>
+          <li><a href="#" onclick="filterCat('accesorio')">Accesorios</a></li>
+          <li><a href="#" onclick="filterCat('oferta')">Ofertas 🔥</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="https://wa.me/51999999999" target="_blank">Contacto</a></li>
+          <li><a href="#">Política de envíos</a></li>
+          <li><a href="#">Política de cambios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/51999999999" target="_blank">📱 WhatsApp</a></li>
+          <li><a href="#">📘 Facebook</a></li>
+          <li><a href="#">📸 Instagram</a></li>
+          <li><a href="#">📍 Lima, Perú</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© 2025 Chips Imports · Todos los derechos reservados</small>
+      <div class="policies">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Política de reembolso</a>
+        <a href="#">Términos del servicio</a>
+        <a href="#">Información de contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOAT WSP ══ -->
+<a class="float-wsp" href="https://wa.me/51999999999?text=Hola!%20Vi%20su%20tienda%20y%20quiero%20consultar%20%F0%9F%98%8A" target="_blank" title="Chatear por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.109 1.523 5.838L.057 23.5l5.815-1.52C7.595 22.96 9.75 23.5 12 23.5 18.627 23.5 24 18.127 24 11.5S18.627 0 12 0zm0 21.5c-1.908 0-3.683-.53-5.194-1.45l-.372-.221-3.452.905.92-3.367-.242-.389C2.562 15.495 2 13.8 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill-rule="evenodd"/></svg>
+</a>
+
+<script>
+// ════ CONFIG ════
+const WSP = '51999999999'; // ← Cambia por tu número real
+
+// ════ PRODUCTS ════
+const products = [
+  { id:1,  name:'Smartwatch Serie 9 Pro',            cat:'smartwatch', badge:'new',  emoji:'⌚', price:'189', oldPrice:'230', desc:'Pantalla AMOLED, GPS, cardíaco, múltiples deportes' },
+  { id:2,  name:'Amazfit GTS 4 Mini',                cat:'smartwatch', badge:'hot',  emoji:'🕐', price:'249', oldPrice:null,  desc:'GPS real, 70 modos, batería 15 días' },
+  { id:3,  name:'Smartwatch con Chip 4G',            cat:'smartwatch', badge:'new',  emoji:'📡', price:'220', oldPrice:'280', desc:'SIM independiente, cámara, WhatsApp, GPS' },
+  { id:4,  name:'Xiaomi Smart Band 9',               cat:'smartwatch', badge:'sale', emoji:'📿', price:'139', oldPrice:'179', desc:'AMOLED, 150 modos, SpO2, 21 días batería' },
+  { id:5,  name:'Smartwatch Kids GPS',               cat:'smartwatch', badge:'new',  emoji:'👦', price:'169', oldPrice:'210', desc:'GPS tiempo real, llamadas SOS, cámara' },
+  { id:6,  name:'Smartwatch Deportivo Pro',          cat:'smartwatch', badge:null,   emoji:'🏃', price:'159', oldPrice:null,  desc:'IP68, presión arterial, 30+ modos deporte' },
+  { id:7,  name:'Auriculares TWS Pro Max',           cat:'auricular',  badge:'hot',  emoji:'🎧', price:'89',  oldPrice:'120', desc:'ANC, Bluetooth 5.3, 30h batería total' },
+  { id:8,  name:'Airpods Compatible Gen 4',          cat:'auricular',  badge:'sale', emoji:'🎵', price:'65',  oldPrice:'90',  desc:'Sonido premium, conexión rápida iOS/Android' },
+  { id:9,  name:'Auriculares Diadema BT',            cat:'auricular',  badge:null,   emoji:'🎼', price:'79',  oldPrice:null,  desc:'Over-ear plegable, micrófono, 20h batería' },
+  { id:10, name:'Auriculares Gamer RGB',             cat:'auricular',  badge:'new',  emoji:'🎮', price:'99',  oldPrice:'135', desc:'Surround 7.1, RGB, micrófono con cancelación' },
+  { id:11, name:'Correa Milanese Loop',              cat:'accesorio',  badge:'new',  emoji:'🔗', price:'39',  oldPrice:null,  desc:'Acero inoxidable magnética, 20-22mm' },
+  { id:12, name:'Cargador Inalámbrico 15W',          cat:'accesorio',  badge:'sale', emoji:'⚡', price:'45',  oldPrice:'65',  desc:'Fast charge, Qi, compatible iOS y Android' },
+  { id:13, name:'Power Bank 20,000 mAh',             cat:'accesorio',  badge:'hot',  emoji:'🔋', price:'79',  oldPrice:'110', desc:'3 salidas USB, 22.5W, pantalla digital' },
+  { id:14, name:'Cable USB-C 240W 2m',               cat:'accesorio',  badge:'sale', emoji:'🔌', price:'25',  oldPrice:'40',  desc:'Nylon trenzado, datos 480Mbps, 30k dobleces' },
+  { id:15, name:'Soporte para Smartwatch',           cat:'accesorio',  badge:null,   emoji:'🗿', price:'29',  oldPrice:null,  desc:'Aluminio, cargador integrado, múltiples modelos' },
+  { id:16, name:'Protector de Pantalla Watch',       cat:'accesorio',  badge:'sale', emoji:'🛡️', price:'15',  oldPrice:'25',  desc:'Vidrio templado 9H, pack x3, varios tamaños' },
+];
+
+function wspLink(p) {
+  const msg = encodeURIComponent(`Hola! Vi en la tienda el producto *${p.name}* (S/ ${p.price}) y quiero consultarlo. ¿Está disponible? 😊`);
+  return `https://wa.me/${WSP}?text=${msg}`;
+}
+
+const WSP_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.109 1.523 5.838L.057 23.5l5.815-1.52C7.595 22.96 9.75 23.5 12 23.5 18.627 23.5 24 18.127 24 11.5S18.627 0 12 0zm0 21.5c-1.908 0-3.683-.53-5.194-1.45l-.372-.221-3.452.905.92-3.367-.242-.389C2.562 15.495 2 13.8 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fill-rule="evenodd"/></svg>`;
+
+function badgeLabel(b){ return {new:'Nuevo',hot:'Popular',sale:'Oferta'}[b]||'' }
+function badgeClass(b){ return {new:'badge--new',hot:'badge--hot',sale:'badge--sale'}[b]||'' }
+function catLabel(c){ return {smartwatch:'Smartwatch',auricular:'Auricular',accesorio:'Accesorio'}[c]||c }
+
+function cardHTML(p,i){
+  const hasSale = p.oldPrice !== null;
+  const pct = hasSale ? Math.round((1-parseInt(p.price)/parseInt(p.oldPrice))*100) : 0;
+  return `
+<div class="card-wrapper" style="animation-delay:${i*.04}s">
+  <div class="card">
+    <div class="card__inner">
+      <div class="card__media">
+        <div class="card__emoji">${p.emoji}</div>
+      </div>
+      ${p.badge ? `<div class="card__badge"><span class="badge ${badgeClass(p.badge)}">${badgeLabel(p.badge)}</span></div>` : ''}
+    </div>
+    <div class="card__content">
+      <div class="card__info">
+        <h3 class="card__heading">${p.name}</h3>
+        <div class="price ${hasSale?'price--on-sale':''}">
+          <div class="price__container">
+            <div class="price__regular">
+              <span class="price-item price-item--normal">S/. ${p.price}</span>
+            </div>
+            ${hasSale?`<div class="price__sale">
+              <span><s class="price-item price-item--regular">S/. ${p.oldPrice}</s></span>
+              <span class="price-item price-item--sale">S/. ${p.price}</span>
+              <span class="badge badge--sale" style="font-size:1rem">-${pct}%</span>
+            </div>`:''}
+          </div>
+        </div>
+        <div style="font-size:1.15rem;color:rgba(62,62,62,.55);margin-top:.5rem;line-height:1.4">${p.desc}</div>
+      </div>
+      <div class="quick-add">
+        <a class="btn-wsp" href="${wspLink(p)}" target="_blank">
+          ${WSP_SVG} Consultar precio
+        </a>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+let currentCat = 'all';
+let searchTerm = '';
+
+function getFiltered(){
+  let list = products;
+  if(currentCat==='oferta') list = list.filter(p=>p.badge==='sale'||p.oldPrice);
+  else if(currentCat!=='all') list = list.filter(p=>p.cat===currentCat);
+  if(searchTerm) list = list.filter(p=>p.name.toLowerCase().includes(searchTerm.toLowerCase())||p.desc.toLowerCase().includes(searchTerm.toLowerCase()));
+  return list;
+}
+
+function render(){
+  const list = getFiltered();
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = list.length
+    ? list.map((p,i)=>cardHTML(p,i)).join('')
+    : '<div style="grid-column:1/-1;padding:4rem;text-align:center;color:rgba(62,62,62,.4);font-size:1.5rem">No se encontraron productos.</div>';
+  const heading = {all:'<strong>Novedades</strong>',smartwatch:'<strong>Smartwatches</strong>',auricular:'<strong>Auriculares</strong>',accesorio:'<strong>Accesorios</strong>',oferta:'<strong>Ofertas 🔥</strong>'};
+  document.getElementById('section-heading').innerHTML = heading[currentCat]||'<strong>Productos</strong>';
+}
+
+function filterCat(cat,el){
+  currentCat=cat;
+  // update pills
+  document.querySelectorAll('.filter-pill').forEach(p=>{p.classList.toggle('active',p.dataset.cat===cat)});
+  // update nav
+  document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active')});
+  render();
+  document.getElementById('productos').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function searchProducts(val){
+  searchTerm=val;render();
+}
+
+document.getElementById('filter-pills').addEventListener('click',e=>{
+  const pill=e.target.closest('.filter-pill');
+  if(pill) filterCat(pill.dataset.cat,pill);
+});
+
+// drawer
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawer-overlay').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawer-overlay').classList.remove('open')}
+
+render();
+</script>
+</body>
+</html>
